@@ -1,4 +1,8 @@
 == Setup LAN dengan DHCP Server - Dinamis - Otomatis
+
+// Kekurangan :
+// Setiap komputer restart, maka IP nya bakalan kereset (berubah ubah terus jadinya)
+
 1. Jadikan 1 komputer menjadi DHCP Server (ambil cth computer-1 yg dijadikan DHCP Server)
 2. Siapkan Aplikasi bernama DHCP Server (Download di google ada -- https://www.dhcpserver.de/cms/download/)
 3. Ekstrak dan jalanakan dhcpwiz.exe
