@@ -1,0 +1,13 @@
+-- Cara Setup LAN - Local saja - Static 
+1. Pastikan anda mempunyai kabel LAN yang sudah terpasang konektor RJ-45
+2. Colokkan kabel Lan ke dalam komputer dan switch
+3. Masuk ke Network and sharing center
+4. Ke Network Connections
+5. Klik kanan ke Ethernet yang baru -> properties
+6. Klik Internet Protocol Version 4 (TCP/IPv4)
+7. Klik Use the following IP Address -> ketik IP yg anda inginkan cth: 192.168.1.1 (computer-1)
+8. Subnet mask auto keisi sendiri 255.255.255.0
+9. Klik OK -> keluar
+10. Masuk ke komputer lain (cth: computer-2) -> lakukan hal yg sama ke computer-2
+11. Untuk computer-2, IP address nya 192.168.1.2 gaboleh sama belakangnya 
+12. Untuk setiap komputer, lakukan hal yg sama, tetapi hanya beda IP address nya saja (+1)
