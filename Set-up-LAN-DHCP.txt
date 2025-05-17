@@ -1,0 +1,31 @@
+== Setup LAN dengan DHCP Server - Dinamis - Otomatis
+1. Jadikan 1 komputer menjadi DHCP Server (ambil cth computer-1 yg dijadikan DHCP Server)
+2. Siapkan Aplikasi bernama DHCP Server (Download di google ada -- https://www.dhcpserver.de/cms/download/)
+3. Ekstrak dan jalanakan dhcpwiz.exe
+4. Pilih Ethernet (IP : 192-168.1.1)
+5. Pastikan komputermu sudah membuat IP address yang static, klo belum bikin dulu IP nya
+6. Next (Skip)
+7. Bikin IP Address nya terserah, dari berapa sampai berapa (disini saya pgn nya mulai 100 - 254)
+8. Lease time = berlaku nya IP tersebut berapa hari/bulan/menit
+9. Centang "Overwrite existing file"
+10. Klik Write INI file
+11. Next
+12. Klik "Admin"
+13. Klik Install
+14. Exit -> Finish
+15. Run dhcpsrv.exe 
+16. Klik "Continue as tray app"
+17. Done
+
+-- Set IP komputer lain dengan otomatis (ketika sudah dicolokkan ke switch, biasanya langsung otomatis ada IP nya langsung)
+1. Masuk ke Network Connections
+2. Klik ke Ethernet -> Properties -> TCP/IPv4
+3. Klik "Obtain an IP address automatically" di bagian atas dan bawah
+4. Klik OK
+5. Lakukan ke semua komputer klo emg belum di set
+
+-- Cek status IP 
+1. Klik kanan ethernet anda
+2. Klik status
+3. Klik Detail
+4. Liat di bagian IPv4 Address
