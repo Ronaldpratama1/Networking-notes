@@ -1,4 +1,4 @@
--- Cara Setup LAN - Local saja - Static 
+-- Cara Setup LAN - Local saja - Static - Manual
 1. Pastikan anda mempunyai kabel LAN yang sudah terpasang konektor RJ-45
 2. Colokkan kabel Lan ke dalam komputer dan switch
 3. Masuk ke Network and sharing center
@@ -11,3 +11,19 @@
 10. Masuk ke komputer lain (cth: computer-2) -> lakukan hal yg sama ke computer-2
 11. Untuk computer-2, IP address nya 192.168.1.2 gaboleh sama belakangnya 
 12. Untuk setiap komputer, lakukan hal yg sama, tetapi hanya beda IP address nya saja (+1)
+
+-- Mengecek apakah sudah tersambung ke jaringan
+1. Buka cmd
+2. cek IP addressnya (cth: computer-1 = 192.168.1.1)
+3. ketik ping 192.168.1.1
+4. klo gabisa, berarti masih ada firewall nya (biasanya klo computer-1 langsung bisa, kl komputer lain belum)
+
+-- Mengatur Firewall
+1. Search Windows Defender Firewall
+2. Klik "Turn Windows Defender Firewall On or Off"
+3. Turn Off semua firewall nya
+4. Klik OK
+5. Lakukan di semua komputer yang mau dihubungkan ke Jaringan
+
+-- Kemungkinan Error dan cara mengatasinya
+1. Error Request Timed Out -> cek semuanya mulai dari port switch, per-kabelan, dan Firewall pada masing masing komputer
