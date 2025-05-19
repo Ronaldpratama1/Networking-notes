@@ -96,3 +96,7 @@
 4. Klik kanan ethernet yang untuk client -> properties
 5. IP nya ubah ke semula (192.168.100.1)
 
+
+
+src : https://youtu.be/fsRvxv0qnAs?si=SqqGF89KCx-UWZr9
+
