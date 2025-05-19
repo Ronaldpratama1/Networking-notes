@@ -1,0 +1,90 @@
+== Install Windows Server dan konfigurasi nya ==
+-- Instalasi Windows Server di komputer kalian (disini saya pakai yang 2019)
+1. Download ISO nya di google
+2. Buat bootable di usb seperti biasa
+3. Masuk ke boot
+4. Pilih yang Windows Server 2019 Standard (Desktop Experience)
+5. Tipe instalasi pilih yang custom (bawah)
+6. Bikin partisi seperti biasa
+7. Tunggu sampai selesai
+8. Setelah itu bikin password (Terdiri dari: Huruf besar, kecil dan tanda khusus)
+9. Press Ctrl + Alt + Del untuk masuk ke Windows Server nya
+
+-- Memberikan IP ke Server
+1. Open Network Connections
+2. Klik kanan di Ethernet
+3. Properties -> TCP/IPv4
+4. Kasih IP nya (cth: 192.168.100.1)
+
+-- Install Service DHCP di Windows Server nya
+1. Buka Windows Server
+2. Klik Add roles and features
+3. Next -> Next -> Next
+4. Pilih DHCP Server -> Add Features
+5. Next -> Next -> Install
+6. Kalau sudah, kembali ke halaman awal
+7. Klik Tools -> Pilih DHCP
+8. Klik kanan di bawah tulisan DHCP
+9. Pilih Add/Remove Bindings
+10. Klik IP utama anda (yang kita buat tadi: 192.168.100.1) -> lalu OK
+11. Klik kanan IPv4 -> New Scope -> Next
+12. Beri nama (cth: DHCP-server) -> Next
+13. Beri IP anda yang tadi (tapi mulai dari terserah anda, cth mulai dari 11 saja: 192.168.100.1 - 192.168.100.100)
+14. Next -> Next -> Next -> Next 
+15. Untuk default gateway nya kasih aja ip utama (192.168.100.1) -> klik add -> Next
+16. di DNS Server beri IP Utama kita (192.168.100.1) -> klik Add
+17. Jika ada IP lain di-remove saja, sisa IP utama kita -> klik Next -> Klik Next -> Next -> Finish
+18. di komputer client, Masuk cmd -> ipconfig/release -> ipconfig/renew
+19. Done
+
+-- Install DNS Features di Windows Server
+1.  Add roles and featuresn-> next -> next -> next
+2. Pilih DNS server -> klik add features -> next -> next -> next -> install 
+
+-- Config DNS Server
+1. di beranda, klik tab tools, pilih DNS
+2. klik kanan tab yang dibawah tulisan DNS -> propereties -> Forwarders -> kalau belum ada apa apa, tambahin 8.8.8.8 -> apply
+3. Klik kanan forward lookup zones -> next -> next -> beri nama zone "server.net" -> next -> next -> next -> finish
+4. buat reverse zone nya juga, klik kanan pada reverse lookup zones -> new zone -> next 3x -> beri ip utama kmu (192.168.100.1) -> next 2x -> finish
+5. tambahkan domain juga, dengan cara klik di forward lookup zones -> server.net -> klik kanan di halaman dalam nya -> New Host -> masukkan IP nya aja (192.168.100.1) -> add host -> done
+6. tambahkan domain ftp, klik di halaman dalam juga -> new alias (CNAME)
+7. alias name : ftp -> fully qualified nya isi server.net -> OK
+8. klik kanan di tulisan dibawah DNS -> All tasks -> Restart
+9. atur firewall nya ke off semua agar bisa di tes ping di client
+
+-- Instalasi Web Server 
+1. Add roles and features -> Next 3x 
+2. Klik Web Server (IIS) -> Add features -> Next 3x
+3. Centang HTTP Redirection, WebDav, FTP Server -> Next -> Install
+4. Masuk ke tools -> Internet Information Server (IIS) Manager
+5. Klik WIN-XXXXXXXX -> Klik kanan Sites -> Add Website
+6. Nama: server.net
+7. Physical path = local disk C -> inetpub -> wwwroot -> add new folder "server.net"
+8. Host name "Server.net" -> OK
+9. Bisa langusng di tes di komputer client dengan mengetikkan hostname tadi "Server.net"
+
+-- Setting FTP 
+1. Masuk ke IIS seperti tadi 
+2. Klik kanan "sites" -> add FTP site
+3. beri nama "ftp.server.net"
+4. Physical path nya seperti saat instalasi web server tadi yaitu Localdisk C -> inetpub -> wwwroot -> server.net -> OK
+5. next
+6. pilih No SSL -> Next
+7. Auth : basic, Author: Specified users -> beri nama terserah (cth: Ronald) -> permisiions: Read Write
+8. Finish
+
+-- Buat username untuk FTP
+1. Search ke Computer Management
+2. Local users and groups -> Users -> didalamnya klik kanan lalu Add user
+3. Isi username: ronald, fullname: ronaldpratama, set password, hilangkan ceklis atas sendiri, lalu ceklis yang password never expires -> Create
+
+-- Mengatur kepemilikan Folder server yang kita buat tadi
+1. Masuk ke folder inetpub tadi (LocalDisk C -> inetpub -> wwwroot -> Server.net
+2. Klik kanan server.net -> properties -> security -> edit -> Add -> Advanced -> Find now -> cari user tadi (ronald)
+3. OK -> OK -> Ceklis fullcontrol -> Apply -> OK -> OK
+
+-- Akses Web Server dari client
+1. open file manager
+2. di jalur direktori ketik "ftp://ronald@ftp.server.net"
+3. Masukkan password
+4. Done
