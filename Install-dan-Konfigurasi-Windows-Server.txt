@@ -88,3 +88,11 @@
 2. di jalur direktori ketik "ftp://ronald@ftp.server.net"
 3. Masukkan password
 4. Done
+
+-- Sharing Internet dari Server ke Client
+1. Di komputer server search Network Connections
+2. Klik kanan Ethernet yg ada internet nya
+3. Properties -> Sharing -> Centang allow semua -> Yes -> OK
+4. Klik kanan ethernet yang untuk client -> properties
+5. IP nya ubah ke semula (192.168.100.1)
+
